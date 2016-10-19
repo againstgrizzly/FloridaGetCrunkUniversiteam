@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="Circuit Tinker" Height="350" Width="525">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="42*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="290" Margin="0,29,0,0" VerticalAlignment="Top" Width="80
+                 " Background="Aquamarine" SelectionChanged="listBox_SelectionChanged" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="290" Margin="382.974,29,-1,0" VerticalAlignment="Top" Width="80
+                 " Background="Aquamarine" SelectionChanged="listBox1_SelectionChanged" Grid.Column="1"/>
+        <Grid HorizontalAlignment="Left" Height="290" Margin="24.974,29,0,0" VerticalAlignment="Top" Width="358" Background="Silver" Grid.Column="1"/>
+
+    </Grid>
+</Window>
