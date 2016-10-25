@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -11,13 +12,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -25,7 +25,7 @@ public class Main extends Application {
     Button startButton, exitButton;
     Text componentsTitle, inspectorTitle;
     Button batteryButton, ledButton, resistorButton, switchButton;
-    Label startLabel, objectProperties;
+    Label startLabel, objectProperties, textFieldLabel0, textFieldLabel1, textFieldLabel2, textFieldLabel3;
     TextField properties0, properties1, properties2, properties3;
     MenuBar menuBar;
 
@@ -43,6 +43,7 @@ public class Main extends Application {
 
 
         BorderPane borderGUI = new BorderPane();
+        borderGUI.setStyle("-fx-background: #F5F5DC");
         borderGUI.setLeft(componentsGUI());
         borderGUI.setRight(inspectorGUI());
         Scene buildScene = new Scene(borderGUI, 1040, 570);
@@ -93,11 +94,11 @@ public class Main extends Application {
             }
         });
 
-        MenuItem exit = new MenuItem("Exit Application");
+        MenuItem exit = new MenuItem("Exit to Main Menu");
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Exits application
+                window.setScene(mainScene);
             }
         });
 
@@ -163,10 +164,10 @@ public class Main extends Application {
         vbox.setPadding(new Insets(15, 12, 15, 12));
         vbox.setSpacing(8);
         vbox.setStyle("-fx-background-color: #808080");
-        vbox.setMaxHeight(400);
+
 
         Text componentsTitle = new Text("Components List");
-        componentsTitle.setFont(Font.font("Calibri", FontWeight.BOLD, 12));
+        componentsTitle.setFont(Font.font("Calibri", FontWeight.BOLD, 16));
 
         batteryButton = new Button("Battery");
         batteryButton.setPrefSize(100, 20);
@@ -182,31 +183,52 @@ public class Main extends Application {
         vbox.getChildren().addAll(componentsTitle, batteryButton, ledButton, resistorButton, switchButton);
         return vbox;
     }
-    public VBox inspectorGUI() {
-        VBox vbox1 = new VBox();
-        vbox1.setPadding(new Insets(15, 12, 15, 12));
-        vbox1.setSpacing(8);
-        vbox1.setStyle("-fx-background-color: #808080");
-        vbox1.setMaxHeight(400);
+    public GridPane inspectorGUI() {
+        GridPane gridGUI = new GridPane();
+        gridGUI.setAlignment(Pos.TOP_CENTER);
+        gridGUI.setVgap(8);
+        HBox hbox1 = new HBox();
+        gridGUI.setPadding(new Insets(15, 12, 15, 12));
+        gridGUI.setStyle("-fx-background-color: #808080");
+        gridGUI.setMaxHeight(200);
+        gridGUI.setMinWidth(150);
+
 
         inspectorTitle = new Text("Inspector");
-        inspectorTitle.setFont(Font.font("Calibri", FontWeight.BOLD, 12));
+        inspectorTitle.setTextAlignment(TextAlignment.RIGHT);
+        inspectorTitle.setFont(Font.font("Calibri", FontWeight.BOLD, 16));
 
-        objectProperties = new Label("Object Properties");
+
+
+
+
+        objectProperties = new Label();
+        objectProperties.setText("Object Properties");
+
+
+        textFieldLabel0 = new Label("Label:");
+        textFieldLabel1 = new Label("Label:");
+        textFieldLabel2 = new Label("Label:");
+        textFieldLabel3 = new Label("Label:");
         properties0 = new TextField();
         properties1 = new TextField();
         properties2 = new TextField();
         properties3 = new TextField();
 
-        properties0.setMaxWidth(50);
-        properties1.setMaxWidth(50);
-        properties2.setMaxWidth(50);
-        properties3.setMaxWidth(50);
 
+        hbox1.getChildren().addAll(inspectorTitle, objectProperties);
+        gridGUI.add(inspectorTitle, 0, 0);
+        gridGUI.add(objectProperties, 0, 1);
+        gridGUI.add(textFieldLabel0, 0, 2);
+        gridGUI.add(properties0, 2, 2);
+        gridGUI.add(textFieldLabel1, 0, 3);
+        gridGUI.add(properties1, 2, 3);
+        gridGUI.add(textFieldLabel2, 0, 4);
+        gridGUI.add(properties2, 2, 4);
+        gridGUI.add(textFieldLabel3, 0, 5);
+        gridGUI.add(properties3, 2, 5);
 
-        vbox1.getChildren().addAll(inspectorTitle, objectProperties, properties0,
-                properties1, properties2, properties3);
-        return vbox1;
+        return gridGUI;
     }
 }
 
