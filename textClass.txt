@@ -1,0 +1,36 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JTextField;
+
+public class Text extends Exercise2 implements KeyListener{
+	
+	Text(){
+		
+		textBox.setText("Enter Temperture Value (please use numbers)");
+	
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+		char keyPressed = e.getKeyChar(); //changes the event to a char that I can test
+		
+		if(keyPressed >= '0'  && keyPressed <= '9'){ //testing the char to see if it was a vaild input
+			
+		}else{
+			
+			textBox.setText(textBox.getText().substring(0,textBox.getText().length() - 1));
+
+			//This deletes the last input from the keybord if it was invaild
+		}
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {}
+
+}
