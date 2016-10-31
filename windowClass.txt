@@ -1,0 +1,48 @@
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+import javax.swing.JPanel;
+
+import javax.swing.JSlider;
+
+import javax.swing.JTextField;
+
+public class Window extends JFrame{
+	
+	//This class is just a set up of the window
+
+	public static JSlider slide = new JSlider(JSlider.HORIZONTAL, 0, 100, 23);
+	
+	public static JPanel myPanel = new JPanel(new GridLayout(2 , 2)); // This is how I am organizing the components on the window
+	
+	public static JTextField textBox = new JTextField();
+
+	public static float tempreture; //This will hold the value of the tempreture between the textbox and the slider
+	
+	public static void main(String[] args) {
+
+		JFrame frame = new JFrame();
+	     
+	     	frame.setSize( 400, 400 ); //Make adjustments to the size as needed
+	    
+	     	frame.add(myPanel);	//adding the components to the window...
+	     	
+	     	myPanel.add(slide);     // "                                    "
+	     
+	     	myPanel.add(textBox);   //"                                      "
+	     	
+	     	textBox.addKeyListener(new Text()); //adding a event handler to the textfield
+	     	
+		slide.addChangeListener(new Slider()); //adding a event handler to the slider
+
+	     	frame.setResizable(false);  
+	     
+	     	frame.setVisible( true ); // display frame 
+	     	
+	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
+	   
+	}
+	
+}
+				
