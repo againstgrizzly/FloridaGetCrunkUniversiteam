@@ -2,16 +2,13 @@ import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
 
-import javax.swing.JTextField;
-
 public class Text extends Window implements KeyListener{
 	
-	public static String Temp = "";
+	public static boolean decimal = false;
 	
-
-	Text(){
+Text(){
 		
-		textBox.setText("23.0"); // set this way because that is room tempture
+		textBox.setText("" + tempreture); // set this way because that is room tempture
 	
 	}
 
@@ -19,27 +16,50 @@ public class Text extends Window implements KeyListener{
 	public void keyPressed(KeyEvent arg0) {}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		
-		char keyPressed = e.getKeyChar(); //changes the event to a char that I can test
-		
-		if(keyPressed >= '0'  && keyPressed <= '9'){ //testing the char to see if it was a vaild input
-			
-			Temp += keyPressed; // this temperally holds the value that has been put into the text field
-			
-			tempreture = Float.parseFloat(Temp); //simply parseing the string value into a workable float number
-
-
-		}else{
-			
-			textBox.setText(textBox.getText().substring(0,textBox.getText().length() - 1));
-
-			//This deletes the last input from the keybord if it was invaild
-		}
-		
-	}
+	public void keyReleased(KeyEvent e) {}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {}
-
+	public void keyTyped(KeyEvent e){
+		
+		
+		
+char keyPressed = e.getKeyChar();
+		
+		
+		if(keyPressed >= '0'  && keyPressed <= '9'){
+			
+			if(decimal == false){
+			
+			 temp += keyPressed;
+			 
+			 tempreture = Float.parseFloat(temp);
+			 
+			 slide.setValue((int) tempreture);
+			 
+			 textBox.setText("" + tempreture);
+			 
+			}else{
+				
+				temp += "." + keyPressed;
+				
+				tempreture = Float.parseFloat(temp);
+				
+				textBox.setText("" + tempreture);
+				
+				decimal = false;
+				
+			}
+			 
+		}
+		if(keyPressed == '.'){
+			
+			decimal = true;
+			
+		}
+			
+		 else{
+				e.consume();
+		 }
+	}
+	
 }
