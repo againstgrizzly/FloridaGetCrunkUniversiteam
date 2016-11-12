@@ -1,0 +1,34 @@
+import javax.swing.event.ChangeEvent;
+
+import javax.swing.event.ChangeListener;
+
+public class Slider extends Window implements ChangeListener{
+	
+Slider(){
+		
+		slide.setPaintTicks(true); //adds little tick marks under the slider
+		
+		slide.setPaintLabels(true); // prints a label every few ticks
+		
+		slide.setMajorTickSpacing(10); // making it so that it prints every 10 ticks
+		
+		slide.setMinorTickSpacing(1); //allows the user to move the slider 1 tick
+	} 
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		
+		tempreture = slide.getValue();	// gets the value from the slider
+	
+		textBox.setText("" + tempreture); //sets the text of the textBox to the temperature
+	
+		if(temp.length() > 3){
+		
+			temp = "";
+				
+		}
+	
+	}
+
+}
+	

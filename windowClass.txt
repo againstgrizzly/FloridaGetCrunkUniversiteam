@@ -1,0 +1,65 @@
+import java.awt.BorderLayout;
+
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+
+import javax.swing.JFrame;
+
+import javax.swing.JPanel;
+
+import javax.swing.JSlider;
+
+import javax.swing.JTextField;
+	
+public class Window extends JFrame{
+		
+	//This class is just a set up of the window
+
+	public static String temp = "";
+		
+	public static JSlider slide = new JSlider(JSlider.HORIZONTAL, 0, 100, 23);
+		
+	public static JPanel myPanel = new JPanel(new GridLayout(2 , 2)); // This is how I am organizing the components on the window
+		
+	public static JTextField textBox = new JTextField();
+
+	public static float tempreture = 23.0f; //This will hold the value of the tempreture between the textbox and the slider
+
+
+	public static void main(String[] args) {
+		
+		
+		JButton button = new JButton("Reset");
+		
+		JFrame frame = new JFrame("Tempreture Controller");
+	     
+     		frame.setSize( 400, 400 ); //Make adjustments to the size as needed
+     	
+     		frame.setLayout(new BorderLayout()); //Setting the layout of the window
+     	
+     		frame.add(myPanel, BorderLayout.CENTER); // "                          "	
+     	
+     		myPanel.setLayout(new GridLayout(2,1)); //"                            "
+     	
+       		myPanel.add(slide);     //adding the components to the window...
+     	
+     		myPanel.add(textBox);   //"                                  "
+     	
+     		frame.add(button, BorderLayout.PAGE_END);
+     	
+     		textBox.addKeyListener(new Text()); //adding a event handler to the textfield
+     	
+     		slide.addChangeListener(new Slider()); //adding a event handler to the slider
+     	
+     		button.addActionListener(new Button()); //adding a event handler to the button
+
+ 	    	frame.setResizable(false);  
+     
+     		frame.setVisible( true ); // display frame 
+     	
+    		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
+	
+	}
+
+}
