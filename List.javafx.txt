@@ -1,0 +1,55 @@
+//Still trying to figure out how to make another textfield come up
+import javafx.application.Application;
+import static javafx.beans.binding.Bindings.select;
+import static javafx.beans.binding.Bindings.select;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+/**
+ *
+ * @author sajon
+ */
+public class Morning extends Application {
+    public static final ObservableList items =
+            FXCollections.observableArrayList();
+    public static final ObservableList data = 
+            FXCollections.observableArrayList();
+    ObservableList<String> select = FXCollections.observableArrayList("Batteries","Wires","Resistors","Batteries","Switches","Sensors");
+    public static void main(String[] args){
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage){
+        primaryStage.setTitle("Help");
+        
+        final ListView listView = new ListView(data);
+        listView.setPrefSize(200,250);
+        listView.setEditable(true);
+        
+        items.addAll
+        ("Batteries","Wires","Resistors","Batteries","Switches","Sensors");
+    for(int i =0; i<1;i++){
+        data.add("Components");
+    }
+           
+    
+    listView.setItems(data);
+    listView.setCellFactory(ComboBoxListCell.forListView(items));
+    
+    StackPane root = new StackPane();
+    root.getChildren().add(listView);
+    primaryStage.setScene(new Scene(root,200,150));
+    primaryStage.show();
+    }
+    public void handle(ActionEvent e){
+        
+    }
+}
